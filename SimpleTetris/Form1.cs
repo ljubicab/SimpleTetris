@@ -19,31 +19,13 @@ namespace SimpleTetris
     {
         ScriptEngine pyEngine = null;
         ScriptScope pyScope = null;
+
         public int Score = 0;
         public int FinalScore = 0;
-
-        public class Item
-        {
-            public string Name;
-            public Item(string name)
-            {
-                Name = name;
-            }
-            public override string ToString()
-            {
-                // Generates the text shown in the combo box
-                return Name;
-            }
-        }
-
-        private Color[] blockEmptyColor; //unutar te klase
-
+        private Color[] blockColor; //unutar te klase
         private Timer timer;
-
         private int tetrisPiecePosition;
-
         private bool[] blocksFilled; //zapamtiti je li blok polje ili ne
-
 
         public Form1()
         {
@@ -52,23 +34,19 @@ namespace SimpleTetris
             pyScope = pyEngine.CreateScope();
 
             timer = new Timer();
-            timer.Interval = 100;
+            timer.Interval = 300;
             timer.Enabled = true;
             timer.Tick += new System.EventHandler(TimerTickEevnt);
 
-            blockEmptyColor = new Color[2];
-
+            blockColor = new Color[2];
             blocksFilled = new bool[40];
-
-            tetrisPiecePosition = -3;
-
-            blockEmptyColor[0] = Color.DodgerBlue;
-
-            blockEmptyColor[1] = Color.DarkSlateBlue;
+            tetrisPiecePosition = -3; //2 je sredina, ali krece iznad pa zato -3 (2-5)
+            blockColor[0] = Color.DodgerBlue;
+            blockColor[1] = Color.DarkSlateBlue;
 
             foreach (Label label in BlockLabels)
             {
-                label.BackColor = blockEmptyColor[0];
+                label.BackColor = blockColor[0];
             }
 
             timer.Start();
@@ -81,7 +59,7 @@ namespace SimpleTetris
 
             if (tetrisPiecePosition < 35)
             {
-                if (BlockLabels[tetrisPiecePosition].BackColor == blockEmptyColor[1])
+                if (BlockLabels[tetrisPiecePosition].BackColor == blockColor[1])
                 {
                     tetrisPiecePosition = 2;
                 }
@@ -92,7 +70,7 @@ namespace SimpleTetris
                 int amount = 0;
                 foreach (Label block in BlockLabels)
                 {
-                    if (block.BackColor == blockEmptyColor[1])
+                    if (block.BackColor == blockColor[1])
                     {
                         blocksFilled[amount] = true; //bool array 
                     }
@@ -109,31 +87,31 @@ namespace SimpleTetris
 
             if (tetrisPiecePosition < 40)
             {
-                if (BlockLabels[tetrisPiecePosition].BackColor == blockEmptyColor[0])
+                if (BlockLabels[tetrisPiecePosition].BackColor == blockColor[0])
                 {
-                    BlockLabels[tetrisPiecePosition].BackColor = blockEmptyColor[1];
+                    BlockLabels[tetrisPiecePosition].BackColor = blockColor[1];
                     if (tetrisPiecePosition > 5)
                     {
-                        BlockLabels[tetrisPiecePosition - 5].BackColor = blockEmptyColor[0];
+                        BlockLabels[tetrisPiecePosition - 5].BackColor = blockColor[0];
                     }
                 }
             }
             //jesu li popunjeni svi u zadnjem redu
-            if (BlockLabels[35].BackColor == blockEmptyColor[1] &&
-               BlockLabels[36].BackColor == blockEmptyColor[1] &&
-               BlockLabels[37].BackColor == blockEmptyColor[1] &&
-               BlockLabels[38].BackColor == blockEmptyColor[1] &&
-               BlockLabels[39].BackColor == blockEmptyColor[1])
+            if (BlockLabels[35].BackColor == blockColor[1] &&
+               BlockLabels[36].BackColor == blockColor[1] &&
+               BlockLabels[37].BackColor == blockColor[1] &&
+               BlockLabels[38].BackColor == blockColor[1] &&
+               BlockLabels[39].BackColor == blockColor[1])
             {
                 //osloboditi zadnju liniju
-                BlockLabels[35].BackColor = blockEmptyColor[0];
-                BlockLabels[36].BackColor = blockEmptyColor[0];
-                BlockLabels[37].BackColor = blockEmptyColor[0];
-                BlockLabels[38].BackColor = blockEmptyColor[0];
-                BlockLabels[39].BackColor = blockEmptyColor[0];
+                BlockLabels[35].BackColor = blockColor[0];
+                BlockLabels[36].BackColor = blockColor[0];
+                BlockLabels[37].BackColor = blockColor[0];
+                BlockLabels[38].BackColor = blockColor[0];
+                BlockLabels[39].BackColor = blockColor[0];
 
                 int amountBlocks = 0;
-
+                tetrisPiecePosition = 2;
                 //make all blocksFilled false
 
                 blocksFilled = new bool[40];
@@ -141,7 +119,7 @@ namespace SimpleTetris
                 //sets ones that are blue to true
                 foreach (Label block in BlockLabels)
                 {
-                    if (block.BackColor == blockEmptyColor[1])
+                    if (block.BackColor == blockColor[1])
                     {
                         blocksFilled[amountBlocks + 5] = true;
                     }
@@ -153,13 +131,27 @@ namespace SimpleTetris
 
                 foreach (Label block in BlockLabels)
                 {
-                    block.BackColor = blockEmptyColor[0];
+                    block.BackColor = blockColor[0];
                     Score += 1;
                     FinalScore = Score / 40;
-
                     textBox1.Text = FinalScore.ToString();
+                }
 
-
+                if (FinalScore > 4)
+                {
+                    timer.Interval = 200;
+                }
+                if (FinalScore > 9)
+                {
+                    timer.Interval = 100;
+                }
+                if (FinalScore > 14)
+                {
+                    timer.Interval = 75;
+                }
+                if (FinalScore > 19)
+                {
+                    timer.Interval = 50;
                 }
 
                 // make the pieces fall down after the line is free
@@ -169,7 +161,7 @@ namespace SimpleTetris
                 {
                     if (blockFilled == true)
                     {
-                        BlockLabels[amountBlue].BackColor = blockEmptyColor[1];
+                        BlockLabels[amountBlue].BackColor = blockColor[1];
                     }
 
                     amountBlue++;
@@ -180,19 +172,19 @@ namespace SimpleTetris
 
             if (tetrisPiecePosition < 40)
             {
-                if (BlockLabels[tetrisPiecePosition].BackColor == blockEmptyColor[0])
+                if (BlockLabels[tetrisPiecePosition].BackColor == blockColor[0])
                 {
-                    BlockLabels[tetrisPiecePosition].BackColor = blockEmptyColor[1];
+                    BlockLabels[tetrisPiecePosition].BackColor = blockColor[1];
                     if (tetrisPiecePosition > 5)
                     {
-                        BlockLabels[tetrisPiecePosition - 5].BackColor = blockEmptyColor[0];
+                        BlockLabels[tetrisPiecePosition - 5].BackColor = blockColor[0];
                     }
                 }
             }
 
             // when filled blocks reach the top
 
-            if (BlockLabels[2].BackColor == blockEmptyColor[1] && BlockLabels[2 + 5].BackColor == blockEmptyColor[1])
+            if (BlockLabels[2].BackColor == blockColor[1] && BlockLabels[2 + 5].BackColor == blockColor[1])
             {
                 timer.Stop();
 
@@ -202,12 +194,14 @@ namespace SimpleTetris
                 {
                     foreach (Label block in BlockLabels)
                     {
-                        block.BackColor = blockEmptyColor[0];
+                        block.BackColor = blockColor[0];
                     }
 
                     blocksFilled = new bool[40];
                     tetrisPiecePosition = -3;
                     textBox1.Text = "0";
+                    timer.Interval = 300;
+                    Score = 0;
                     timer.Start();
                 }
                 else
@@ -253,11 +247,11 @@ namespace SimpleTetris
                         tetrisPiecePosition != 10 && tetrisPiecePosition != 15 &&
                         tetrisPiecePosition != 20 && tetrisPiecePosition != 25 &&
                         tetrisPiecePosition != 30 && tetrisPiecePosition != 35 &&
-                        BlockLabels[tetrisPiecePosition - 1].BackColor != blockEmptyColor[1])
+                        BlockLabels[tetrisPiecePosition - 1].BackColor != blockColor[1])
                     {
                         tetrisPiecePosition--;
-                        BlockLabels[tetrisPiecePosition].BackColor = blockEmptyColor[1];
-                        BlockLabels[tetrisPiecePosition + 1].BackColor = blockEmptyColor[0];
+                        BlockLabels[tetrisPiecePosition].BackColor = blockColor[1];
+                        BlockLabels[tetrisPiecePosition + 1].BackColor = blockColor[0];
                         return true;
                     }
 
@@ -272,11 +266,11 @@ namespace SimpleTetris
                         tetrisPiecePosition != 9 && tetrisPiecePosition != 14 &&
                         tetrisPiecePosition != 19 && tetrisPiecePosition != 24 &&
                         tetrisPiecePosition != 29 && tetrisPiecePosition != 34 &&
-                        BlockLabels[tetrisPiecePosition + 1].BackColor != blockEmptyColor[1])
+                        BlockLabels[tetrisPiecePosition + 1].BackColor != blockColor[1])
                     {
                         tetrisPiecePosition++;
-                        BlockLabels[tetrisPiecePosition].BackColor = blockEmptyColor[1];
-                        BlockLabels[tetrisPiecePosition - 1].BackColor = blockEmptyColor[0];
+                        BlockLabels[tetrisPiecePosition].BackColor = blockColor[1];
+                        BlockLabels[tetrisPiecePosition - 1].BackColor = blockColor[0];
                         return true;
                     }
 

@@ -121,7 +121,7 @@ namespace SimpleTetris
             this.textBox1.Location = new System.Drawing.Point(409, 53);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
+            this.textBox1.Size = new System.Drawing.Size(120, 22);
             this.textBox1.TabIndex = 3;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -147,7 +147,7 @@ namespace SimpleTetris
             this.textBox2.Location = new System.Drawing.Point(6, 44);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
+            this.textBox2.Size = new System.Drawing.Size(120, 22);
             this.textBox2.TabIndex = 6;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -165,7 +165,7 @@ namespace SimpleTetris
             this.textBox3.Location = new System.Drawing.Point(6, 104);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(100, 22);
+            this.textBox3.Size = new System.Drawing.Size(120, 22);
             this.textBox3.TabIndex = 8;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -183,7 +183,7 @@ namespace SimpleTetris
             this.textBox4.Location = new System.Drawing.Point(6, 164);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(100, 22);
+            this.textBox4.Size = new System.Drawing.Size(120, 22);
             this.textBox4.TabIndex = 10;
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -201,7 +201,7 @@ namespace SimpleTetris
             this.textBox5.Location = new System.Drawing.Point(6, 223);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(100, 22);
+            this.textBox5.Size = new System.Drawing.Size(120, 22);
             this.textBox5.TabIndex = 12;
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -218,7 +218,7 @@ namespace SimpleTetris
             // 
             this.button1.Location = new System.Drawing.Point(409, 92);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 26);
+            this.button1.Size = new System.Drawing.Size(120, 26);
             this.button1.TabIndex = 5;
             this.button1.Text = "Pause";
             this.button1.UseVisualStyleBackColor = true;
@@ -228,7 +228,7 @@ namespace SimpleTetris
             // 
             this.button2.Location = new System.Drawing.Point(409, 135);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 26);
+            this.button2.Size = new System.Drawing.Size(120, 26);
             this.button2.TabIndex = 6;
             this.button2.Text = "Resume";
             this.button2.UseVisualStyleBackColor = true;
