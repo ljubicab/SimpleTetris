@@ -1,0 +1,17 @@
+C:\Users\Ljubica\Desktop\SimpleTetris\SimpleTetris\bin\Debug\SimpleTetris.exe.config
+C:\Users\Ljubica\Desktop\SimpleTetris\SimpleTetris\bin\Debug\SimpleTetris.exe
+C:\Users\Ljubica\Desktop\SimpleTetris\SimpleTetris\bin\Debug\SimpleTetris.pdb
+C:\Users\Ljubica\Desktop\SimpleTetris\SimpleTetris\bin\Debug\IronPython.dll
+C:\Users\Ljubica\Desktop\SimpleTetris\SimpleTetris\bin\Debug\Microsoft.Scripting.dll
+C:\Users\Ljubica\Desktop\SimpleTetris\SimpleTetris\bin\Debug\Microsoft.Dynamic.dll
+C:\Users\Ljubica\Desktop\SimpleTetris\SimpleTetris\bin\Debug\Microsoft.Scripting.Metadata.dll
+C:\Users\Ljubica\Desktop\SimpleTetris\SimpleTetris\bin\Debug\IronPython.xml
+C:\Users\Ljubica\Desktop\SimpleTetris\SimpleTetris\bin\Debug\Microsoft.Scripting.xml
+C:\Users\Ljubica\Desktop\SimpleTetris\SimpleTetris\bin\Debug\Microsoft.Dynamic.xml
+C:\Users\Ljubica\Desktop\SimpleTetris\SimpleTetris\bin\Debug\Microsoft.Scripting.Metadata.xml
+C:\Users\Ljubica\Desktop\SimpleTetris\SimpleTetris\obj\Debug\SimpleTetris.csprojResolveAssemblyReference.cache
+C:\Users\Ljubica\Desktop\SimpleTetris\SimpleTetris\obj\Debug\SimpleTetris.Form1.resources
+C:\Users\Ljubica\Desktop\SimpleTetris\SimpleTetris\obj\Debug\SimpleTetris.Properties.Resources.resources
+C:\Users\Ljubica\Desktop\SimpleTetris\SimpleTetris\obj\Debug\SimpleTetris.csproj.GenerateResource.Cache
+C:\Users\Ljubica\Desktop\SimpleTetris\SimpleTetris\obj\Debug\SimpleTetris.exe
+C:\Users\Ljubica\Desktop\SimpleTetris\SimpleTetris\obj\Debug\SimpleTetris.pdb
