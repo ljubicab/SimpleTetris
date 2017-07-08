@@ -25,7 +25,7 @@ namespace SimpleTetris
         private Color[] blockColor; //unutar te klase
         private Timer timer;
         private int tetrisPiecePosition;
-        private bool[] blocksFilled; //zapamtiti je li blok polje ili ne
+        private bool[] blocksFilled;
 
         public Form1()
         {
@@ -40,8 +40,8 @@ namespace SimpleTetris
             timer.Tick += new System.EventHandler(TimerTickEevnt);
 
             blockColor = new Color[2];
-            blockColor[0] = Color.DodgerBlue;
-            blockColor[1] = Color.DarkSlateBlue;
+            blockColor[0] = Color.LightSkyBlue;
+            blockColor[1] = Color.RoyalBlue;
 
             blocksFilled = new bool[40];
 
@@ -75,7 +75,7 @@ namespace SimpleTetris
                 {
                     if (block.BackColor == blockColor[1])
                     {
-                        blocksFilled[amount] = true; //bool array 
+                        blocksFilled[amount] = true; //bool niz 
                     }
                     amount++;
                 }
