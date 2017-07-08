@@ -30,6 +30,7 @@ namespace SimpleTetris
         public Form1()
         {
             InitializeComponent();
+
             pyEngine = Python.CreateEngine();
             pyScope = pyEngine.CreateScope();
 
@@ -39,10 +40,12 @@ namespace SimpleTetris
             timer.Tick += new System.EventHandler(TimerTickEevnt);
 
             blockColor = new Color[2];
-            blocksFilled = new bool[40];
-            tetrisPiecePosition = -3; //2 je sredina, ali krece iznad pa zato -3 (2-5)
             blockColor[0] = Color.DodgerBlue;
             blockColor[1] = Color.DarkSlateBlue;
+
+            blocksFilled = new bool[40];
+
+            tetrisPiecePosition = -3; //2 je sredina, ali krece iznad pa zato -3 (2-5)
 
             foreach (Label label in BlockLabels)
             {
@@ -78,12 +81,10 @@ namespace SimpleTetris
                 }
             }
 
-
             if (tetrisPiecePosition > 40)
             {
                 tetrisPiecePosition = 2;
             }
-
 
             if (tetrisPiecePosition < 40)
             {
@@ -96,6 +97,7 @@ namespace SimpleTetris
                     }
                 }
             }
+
             //jesu li popunjeni svi u zadnjem redu
             if (BlockLabels[35].BackColor == blockColor[1] &&
                BlockLabels[36].BackColor == blockColor[1] &&
@@ -112,11 +114,9 @@ namespace SimpleTetris
 
                 int amountBlocks = 0;
                 tetrisPiecePosition = 2;
-                //make all blocksFilled false
 
                 blocksFilled = new bool[40];
 
-                //sets ones that are blue to true
                 foreach (Label block in BlockLabels)
                 {
                     if (block.BackColor == blockColor[1])
@@ -127,7 +127,6 @@ namespace SimpleTetris
                     amountBlocks++;
 
                 }
-                //make all pieces Empty
 
                 foreach (Label block in BlockLabels)
                 {
@@ -137,6 +136,20 @@ namespace SimpleTetris
                     textBox1.Text = FinalScore.ToString();
                 }
 
+                //kad se oslobodi donja linija, svi blokovi se pomiču dolje
+                int amountBlue = 0;
+                foreach (bool blockFilled in blocksFilled)
+                {
+                    if (blockFilled == true)
+                    {
+                        BlockLabels[amountBlue].BackColor = blockColor[1];
+                    }
+
+                    amountBlue++;
+
+                }
+
+                //"leveli", brzina "padanja" blokova
                 if (FinalScore > 4)
                 {
                     timer.Interval = 200;
@@ -154,36 +167,9 @@ namespace SimpleTetris
                     timer.Interval = 50;
                 }
 
-                // make the pieces fall down after the line is free
-
-                int amountBlue = 0;
-                foreach (bool blockFilled in blocksFilled)
-                {
-                    if (blockFilled == true)
-                    {
-                        BlockLabels[amountBlue].BackColor = blockColor[1];
-                    }
-
-                    amountBlue++;
-
-                }
-
             }
 
-            if (tetrisPiecePosition < 40)
-            {
-                if (BlockLabels[tetrisPiecePosition].BackColor == blockColor[0])
-                {
-                    BlockLabels[tetrisPiecePosition].BackColor = blockColor[1];
-                    if (tetrisPiecePosition > 5)
-                    {
-                        BlockLabels[tetrisPiecePosition - 5].BackColor = blockColor[0];
-                    }
-                }
-            }
-
-            // when filled blocks reach the top
-
+            //kada blokovi dosegnu vrh
             if (BlockLabels[2].BackColor == blockColor[1] && BlockLabels[2 + 5].BackColor == blockColor[1])
             {
                 timer.Stop();
@@ -210,7 +196,7 @@ namespace SimpleTetris
                 }
 
                 string time = DateTime.Now.ToString();
-                string path = @"C:\Users\Ljubica\Desktop\SimpleTetris\Scores.txt";
+                string path = @"Scores.txt";
                 if (!File.Exists(path))
                 {
                     File.Create(path);
@@ -254,7 +240,6 @@ namespace SimpleTetris
                         BlockLabels[tetrisPiecePosition + 1].BackColor = blockColor[0];
                         return true;
                     }
-
                 }
             }
 
@@ -273,12 +258,10 @@ namespace SimpleTetris
                         BlockLabels[tetrisPiecePosition - 1].BackColor = blockColor[0];
                         return true;
                     }
-
                 }
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
 
         private void loadExtensionToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -4,7 +4,7 @@ clr.AddReference('System.Windows.Forms')
 from System.Windows.Forms import *
 
 def fileOpen(sender, e):
-    file = open(r'C:\Users\Ljubica\Desktop\SimpleTetris\Scores.txt')
+    file = open(r'Scores.txt')
     m = [row.split() for row in file.read().split("\n") if row]
     sum = 0
     score = []
