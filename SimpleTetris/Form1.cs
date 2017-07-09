@@ -21,8 +21,8 @@ namespace SimpleTetris
         ScriptScope pyScope = null;
 
         public int Score = 0;
-        public int FinalScore = 0;
-        private Color[] blockColor; //unutar te klase
+        public int finalScore = 0;
+        private Color[] blockColor;
         private Timer timer;
         private int tetrisPiecePosition;
         private bool[] blocksFilled;
@@ -35,7 +35,7 @@ namespace SimpleTetris
             pyScope = pyEngine.CreateScope();
 
             timer = new Timer();
-            timer.Interval = 300;
+            timer.Interval = 250;
             timer.Enabled = true;
             timer.Tick += new System.EventHandler(TimerTickEevnt);
 
@@ -45,7 +45,7 @@ namespace SimpleTetris
 
             blocksFilled = new bool[40];
 
-            tetrisPiecePosition = -3; //2 je sredina, ali krece iznad pa zato -3 (2-5)
+            tetrisPiecePosition = -3; 
 
             foreach (Label label in BlockLabels)
             {
@@ -75,7 +75,7 @@ namespace SimpleTetris
                 {
                     if (block.BackColor == blockColor[1])
                     {
-                        blocksFilled[amount] = true; //bool niz 
+                        blocksFilled[amount] = true;
                     }
                     amount++;
                 }
@@ -98,14 +98,12 @@ namespace SimpleTetris
                 }
             }
 
-            //jesu li popunjeni svi u zadnjem redu
             if (BlockLabels[35].BackColor == blockColor[1] &&
                BlockLabels[36].BackColor == blockColor[1] &&
                BlockLabels[37].BackColor == blockColor[1] &&
                BlockLabels[38].BackColor == blockColor[1] &&
                BlockLabels[39].BackColor == blockColor[1])
             {
-                //osloboditi zadnju liniju
                 BlockLabels[35].BackColor = blockColor[0];
                 BlockLabels[36].BackColor = blockColor[0];
                 BlockLabels[37].BackColor = blockColor[0];
@@ -132,11 +130,10 @@ namespace SimpleTetris
                 {
                     block.BackColor = blockColor[0];
                     Score += 1;
-                    FinalScore = Score / 40;
-                    textBox1.Text = FinalScore.ToString();
+                    finalScore = Score / 40;
+                    textBox1.Text = finalScore.ToString();
                 }
 
-                //kad se oslobodi donja linija, svi blokovi se pomiču dolje
                 int amountBlue = 0;
                 foreach (bool blockFilled in blocksFilled)
                 {
@@ -149,32 +146,31 @@ namespace SimpleTetris
 
                 }
 
-                //"leveli", brzina "padanja" blokova
-                if (FinalScore > 4)
+                //"levels"
+                if (finalScore > 4)
                 {
                     timer.Interval = 200;
                 }
-                if (FinalScore > 9)
+                if (finalScore > 9)
                 {
                     timer.Interval = 100;
                 }
-                if (FinalScore > 14)
+                if (finalScore > 14)
                 {
                     timer.Interval = 75;
                 }
-                if (FinalScore > 19)
+                if (finalScore > 19)
                 {
                     timer.Interval = 50;
                 }
 
             }
 
-            //kada blokovi dosegnu vrh
             if (BlockLabels[2].BackColor == blockColor[1] && BlockLabels[2 + 5].BackColor == blockColor[1])
             {
                 timer.Stop();
 
-                DialogResult quitOrContinue = MessageBox.Show(string.Format("You lost. Final score: {0}. Play again?", FinalScore.ToString()), "Game Over", MessageBoxButtons.YesNo);
+                DialogResult quitOrContinue = MessageBox.Show(string.Format("You lost. Final score: {0}. Play again?", finalScore.ToString()), "Game Over", MessageBoxButtons.YesNo);
 
                 if (quitOrContinue == DialogResult.Yes)
                 {
@@ -186,7 +182,7 @@ namespace SimpleTetris
                     blocksFilled = new bool[40];
                     tetrisPiecePosition = -3;
                     textBox1.Text = "0";
-                    timer.Interval = 300;
+                    timer.Interval = 250;
                     Score = 0;
                     timer.Start();
                 }
@@ -205,15 +201,15 @@ namespace SimpleTetris
                 {
                     using (var tw = new StreamWriter(path, true))
                     {
-                        if (FinalScore > 5)
+                        if (finalScore > 5)
                         {
-                            tw.WriteLine("You got score {0} at time {1}. Congrats!", FinalScore.ToString(), time);
+                            tw.WriteLine("You got score {0} at time {1}. Congrats!", finalScore.ToString(), time);
                             tw.Close();
                         }
 
                         else
                         {
-                            tw.WriteLine("You got score {0} at time {1}. Better luck next time.", FinalScore.ToString(), time);
+                            tw.WriteLine("You got score {0} at time {1}. Better luck next time.", finalScore.ToString(), time);
                             tw.Close();
                         }
 
